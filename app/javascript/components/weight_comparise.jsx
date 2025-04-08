@@ -57,11 +57,11 @@ const WeightPriceComparator = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold text-center mb-6">Сравнение цен</h1>
+    <div className="max-w-md mx-auto p-6 bg-white rounded-xl shadow-md">
+    <h1 className="text-2xl font-bold text-center mb-6 text-indigo-600">Сравнение цен</h1>
       
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
+    <form onSubmit={handleSubmit} className="space-y-5">
+    <div className="grid grid-cols-2 gap-5">
           <div className="space-y-2">
             <h2 className="text-lg font-semibold">Вариант 1</h2>
             <div>
@@ -120,12 +120,12 @@ const WeightPriceComparator = () => {
         </div>
         
         <button
-          type="submit"
-          disabled={loading}
-          className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50"
-        >
-          {loading ? 'Рассчитываем...' : 'Сравнить цены'}
-        </button>
+        type="submit"
+        disabled={loading}
+        className="w-full bg-indigo-600 text-white py-2.5 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 transition-colors"
+      >
+        {loading ? 'Рассчитываем...' : 'Сравнить цены'}
+      </button>
       </form>
       
       {result && (

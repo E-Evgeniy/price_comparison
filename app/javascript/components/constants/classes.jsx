@@ -1,0 +1,1 @@
+export const elementDiv0Class = "w-full px-4 md:w-1/2 lg:w-1/3";
