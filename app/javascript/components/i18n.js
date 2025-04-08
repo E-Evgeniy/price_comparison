@@ -20,7 +20,12 @@ i18n
       en: {
         translation: {
             description: {
-                orders: 'Заказы',
+              weight: 'Масса',
+              weight_comparison: 'Сравнение цены товаров за 1 килограмм',
+              volume: 'Объём',
+              volume_comparison: 'Сравнение цены товаров за 1 литр',
+              unit: 'Штука',
+              unit_comparison: 'Сравнение цены товаров за 1 штуку'
 
               }
         }
