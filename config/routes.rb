@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get '/up', to: 'health_check#up'
 
   get '/weight_comparison', to: 'react#home'
+  get '/volume_comparison', to: 'react#home'
+  get '/unit_comparison', to: 'react#home'
 
   post 'api/v1/comparison/calculate', to: 'api/v1/comparisons#calculate'
 end

@@ -7,11 +7,11 @@ export const name_main__element = "mb-4 text-xl font-bold text-black sm:text-2xl
 export const description__main__element = "text-base font-medium text-gray-600";
 
 export const compare__div_0 = "max-w-md mx-auto p-6 bg-white rounded-xl shadow-md";
-export const compare__head = "text-2xl font-bold text-center mb-6 text-indigo-600";
+export const compare__head = "text-2xl font-bold text-center mb-6 text-grey-600";
 export const form__compare = "space-y-5";
 export const form__div_0 = "grid grid-cols-2 gap-5";
 export const form__div_1 = "space-y-2";
-export const form__h0 = "text-lg font-semibold";
+export const form__h0 = "text-lg font-semibold text-center";
 export const form__label = "block text-sm font-medium text-gray-700";
 export const form__input = "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500";
 export const form__button_calc = "w-full bg-indigo-600 text-white py-2.5 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 transition-colors";

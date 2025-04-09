@@ -9,6 +9,8 @@ import {
 
 import MainPage from "./components/main_page"
 import WeightPriceComparator from "./components/weight_comparise"
+import VolumePriceComparator from "./components/volume_comparise"
+import UnitPriceComparator from "./components/unit_comparise"
 
 function App() {
     return (
@@ -17,7 +19,8 @@ function App() {
             <Routes>            
                 <Route path="*" element={<MainPage />} />
                 <Route path="/weight_comparison" element={<WeightPriceComparator />} />
-                
+                <Route path="/volume_comparison" element={<VolumePriceComparator />} />
+                <Route path="/unit_comparison" element={<UnitPriceComparator />} />
             </Routes>
             </BrowserRouter>
         </div>
