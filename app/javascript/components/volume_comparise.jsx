@@ -14,7 +14,7 @@ import {
 
 
 
-const WeightPriceComparator = () => {
+const VolumePriceComparator = () => {
   const { t } = useTranslation();
 
   const [formData, setFormData] = useState({
@@ -106,7 +106,7 @@ const WeightPriceComparator = () => {
               />
             </div>
             <div>
-              <label className={form__label}>{t('description.quantity')} {t('description.kgs')} {t('description.in_unit')} {t('description.one')}</label>
+              <label className={form__label}>{t('description.quantity')} {t('description.litrs')} {t('description.in_unit')} {t('description.one')}</label>
               <input
                 type="text"
                 name="quantity1"
@@ -146,7 +146,7 @@ const WeightPriceComparator = () => {
               />
             </div>
             <div>
-              <label className={form__label}>{t('description.quantity')} {t('description.kgs')} {t('description.in_unit')} {t('description.two')}</label>
+              <label className={form__label}>{t('description.quantity')} {t('description.litrs')} {t('description.in_unit')} {t('description.two')}</label>
               <input
                 type="text"
                 name="quantity2"
@@ -179,8 +179,8 @@ const WeightPriceComparator = () => {
         <div className={result__div_0}>
           <div className={result__div_1}>
             <h3 className={result__h}>{t('description.results')} </h3>
-            <p>{t('description.price')} {t('description.per_kg')} {t('description.product')} {t('description.one')}{t('description.two_point')}  <span className={results_span}>{result.unit_price1}</span>  {t('description.currency')}</p>
-            <p>{t('description.price')} {t('description.per_kg')} {t('description.product')} {t('description.two')}{t('description.two_point')}  <span className={results_span}>{result.unit_price2}</span>  {t('description.currency')}</p>
+            <p>{t('description.price')} {t('description.per_litr')} {t('description.product')} {t('description.one')}{t('description.two_point')}  <span className={results_span}>{result.unit_price1}</span>  {t('description.currency')}</p>
+            <p>{t('description.price')} {t('description.per_litr')} {t('description.product')} {t('description.two')}{t('description.two_point')}  <span className={results_span}>{result.unit_price2}</span>  {t('description.currency')}</p>
 
             <div className={`${results_condition_main} ${result.better_option === 'equal'
                 ? `${results_condition_main_blue}`
@@ -195,7 +195,7 @@ const WeightPriceComparator = () => {
                   <p className={results_bold}>
                   {t('description.profitable')} {result.better_option}
                   </p>
-                  <p>{t('description.econom')} {result.savings} {t('description.currency')} {t('description.per_kg')}</p>
+                  <p>{t('description.econom')} {result.savings} {t('description.currency')} {t('description.per_litr')}</p>
                 </>
               )}</div>
 
@@ -220,4 +220,4 @@ const WeightPriceComparator = () => {
   );
 };
 
-export default WeightPriceComparator;
+export default VolumePriceComparator;
