@@ -25,8 +25,25 @@ i18n
               volume: 'Объём',
               volume_comparison: 'Сравнение цены товаров за 1 литр',
               unit: 'Штука',
-              unit_comparison: 'Сравнение цены товаров за 1 штуку'
-
+              unit_comparison: 'Сравнение цены товаров за 1 штуку',
+              prices_comparison: 'Сравнение цен',
+              choice_1: 'Товар 1',
+              choice_2: 'Товар 2',
+              price: 'Цена',
+              quantity_weight_1: 'Количество килограмм в товаре 1',
+              quantity_weight_2: 'Количество килограмм в товаре 2',
+              compare: 'Сравнить',
+              count: 'Рассчитываем...',
+              results: 'Результаты:',
+              per_kg: 'за килограмм',
+              unit1: 'Товар 1: ',
+              unit2: 'Товар 2: ',
+              products_equal: 'Оба варианта одинаково выгодны!',
+              profitable: 'Выгоднее Товар',
+              econom: 'Экономия:',
+              currency: 'руб.',
+              clear_form: 'Очистка формы',
+              to_main: 'На главную',
               }
         }
       }

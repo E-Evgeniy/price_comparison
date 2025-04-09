@@ -16,14 +16,21 @@ module Api
           unit_price2 = price2 / quantity2
       
           # Определяем, какой вариант выгоднее
-          if unit_price1 < unit_price2
+          if (unit_price1 - unit_price2).abs < 0.01 # Учитываем погрешность float
+            result = { 
+              unit_price1: unit_price1.round(2),
+              unit_price2: unit_price2.round(2),
+              better_option: 'equal',
+              savings: (unit_price2 - unit_price1).round(2)
+            }
+          elsif unit_price1 < unit_price2
             result = { 
               unit_price1: unit_price1.round(2),
               unit_price2: unit_price2.round(2),
               better_option: 1,
               savings: (unit_price2 - unit_price1).round(2)
             }
-          else
+          else 
             result = { 
               unit_price1: unit_price1.round(2),
               unit_price2: unit_price2.round(2),
