@@ -1,7 +1,22 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import {
+  compare__div_0, compare__head,
+  form__div_0, form__div_1,
+  form__compare, form__h0, form__label,
+  form__input, form__button_calc, result__div_0,
+  result__div_1, result__h, results_span, results_condition_main,
+  results_condition_main_blue, results_condition_main_green,
+  results_bold, results_button_clear, results_button_to_main
+
+} from "./constants/classes"; // Импортируем классы
+
+
 
 const WeightPriceComparator = () => {
+  const { t } = useTranslation();
+
   const [formData, setFormData] = useState({
     price1: '',
     quantity1: '',
@@ -14,16 +29,24 @@ const WeightPriceComparator = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+
+    // Разрешаем:
+    // - пустую строку
+    // - целые числа (42)
+    // - десятичные числа (3.14)
+    // - числа с ведущей точкой (.5)
+    if (value === '' || /^\.\d*$|^\d+\.?\d*$/.test(value)) {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
+
     try {
       const response = await fetch('/api/v1/comparison/calculate', {
         method: 'POST',
@@ -32,7 +55,7 @@ const WeightPriceComparator = () => {
         },
         body: JSON.stringify(formData)
       });
-      
+
       const data = await response.json();
       setResult(data);
     } catch (error) {
@@ -57,106 +80,141 @@ const WeightPriceComparator = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-xl shadow-md">
-    <h1 className="text-2xl font-bold text-center mb-6 text-indigo-600">Сравнение цен</h1>
-      
-    <form onSubmit={handleSubmit} className="space-y-5">
-    <div className="grid grid-cols-2 gap-5">
-          <div className="space-y-2">
-            <h2 className="text-lg font-semibold">Вариант 1</h2>
+    <div className={compare__div_0}>
+      <h1 className={compare__head}>{t('description.prices_comparison')}</h1>
+
+      <form onSubmit={handleSubmit} className={form__compare}>
+        <div className={form__div_0}>
+          <div className={form__div_1}>
+            <h2 className={form__h0}>{t('description.choice_1')}</h2>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Цена</label>
+              <label className={form__label}>{t('description.price')}</label>
               <input
-                type="number"
+                type="text"
                 name="price1"
                 value={formData.price1}
                 onChange={handleChange}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                step="0.01"
+                className={form__input}
+                inputMode="decimal"
+                pattern="[0-9]*\.?[0-9]*"
+                onKeyDown={(e) => {
+                  if (e.key === '-' || e.key === 'e') {
+                    e.preventDefault();
+                  }
+                }}
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Количество (л, кг, шт)</label>
+              <label className={form__label}>{t('description.quantity_weight_1')}</label>
               <input
-                type="number"
+                type="text"
                 name="quantity1"
                 value={formData.quantity1}
                 onChange={handleChange}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                step="0.01"
+                className={form__input}
+                inputMode="decimal"
+                pattern="[0-9]*\.?[0-9]*"
+                onKeyDown={(e) => {
+                  if (e.key === '-' || e.key === 'e') {
+                    e.preventDefault();
+                  }
+                }}
                 required
               />
             </div>
           </div>
-          
-          <div className="space-y-2">
-            <h2 className="text-lg font-semibold">Вариант 2</h2>
+
+          <div className={form__div_1}>
+            <h2 className={form__h0}>{t('description.choice_2')}</h2>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Цена</label>
+              <label className={form__label}>{t('description.price')}</label>
               <input
-                type="number"
+                type="text"
                 name="price2"
                 value={formData.price2}
                 onChange={handleChange}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                step="0.01"
+                className={form__input}
+                inputMode="decimal"
+                pattern="[0-9]*\.?[0-9]*"
+                onKeyDown={(e) => {
+                  if (e.key === '-' || e.key === 'e') {
+                    e.preventDefault();
+                  }
+                }}
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Количество (л, кг, шт)</label>
+              <label className={form__label}>{t('description.quantity_weight_2')}</label>
               <input
-                type="number"
+                type="text"
                 name="quantity2"
                 value={formData.quantity2}
                 onChange={handleChange}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                step="0.01"
+                className={form__input}
+                inputMode="decimal"
+                pattern="[0-9]*\.?[0-9]*"
+                onKeyDown={(e) => {
+                  if (e.key === '-' || e.key === 'e') {
+                    e.preventDefault();
+                  }
+                }}
                 required
               />
             </div>
           </div>
         </div>
-        
+
         <button
-        type="submit"
-        disabled={loading}
-        className="w-full bg-indigo-600 text-white py-2.5 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 transition-colors"
-      >
-        {loading ? 'Рассчитываем...' : 'Сравнить цены'}
-      </button>
+          type="submit"
+          disabled={loading}
+          className={form__button_calc}
+        >
+          {loading ? t('description.count') : t('description.compare')}
+        </button>
       </form>
-      
+
       {result && (
-        <div className="mt-6 space-y-4">
-          <div className="p-4 bg-gray-50 rounded-md">
-            <h3 className="text-lg font-medium mb-2">Результаты:</h3>
-            <p>Цена за единицу (Вариант 1): <span className="font-semibold">{result.unit_price1}</span></p>
-            <p>Цена за единицу (Вариант 2): <span className="font-semibold">{result.unit_price2}</span></p>
-            
-            <div className="mt-3 p-3 bg-green-100 rounded-md">
-              <p className="font-bold">
-                Выгоднее вариант {result.better_option}!
-              </p>
-              <p>Экономия: {result.savings} за единицу</p>
-            </div>
+        <div className={result__div_0}>
+          <div className={result__div_1}>
+            <h3 className={result__h}>{t('description.results')} </h3>
+            <p>{t('description.price')} {t('description.per_kg')} {t('description.unit1')} <span className={results_span}>{result.unit_price1}</span>  {t('description.currency')}</p>
+            <p>{t('description.price')} {t('description.per_kg')} {t('description.unit2')} <span className={results_span}>{result.unit_price2}</span>  {t('description.currency')}</p>
+
+            <div className={`${results_condition_main} ${result.better_option === 'equal'
+                ? `${results_condition_main_blue}`
+                : `${results_condition_main_green}`
+              }`}>
+
+              {result.better_option === 'equal' ? (
+                <p className={results_bold}>{t('description.products_equal')}  </p>
+              ) : (
+
+                <>                  
+                  <p className={results_bold}>
+                  {t('description.profitable')} {result.better_option}
+                  </p>
+                  <p>{t('description.econom')} {result.savings} {t('description.currency')} {t('description.per_kg')}</p>
+                </>
+              )}</div>
+
           </div>
-          
+
           <button
             onClick={handleClear}
-            className="w-full bg-gray-200 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+            className={results_button_clear}
           >
-            Очистка формы
+            {t('description.clear_form')}
           </button>
         </div>
       )}
-      
+
       <button
         onClick={handleGoHome}
-        className="mt-4 w-full bg-blue-100 text-blue-800 py-2 px-4 rounded-md hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        className={results_button_to_main}
       >
-        На главную
+        {t('description.to_main')}
       </button>
     </div>
   );
