@@ -79,5 +79,16 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  url: <%= ENV["DATABASE_URL"] %>
+  adapter: postgresql  # Обязательно явно указываем адаптер
+  encoding: unicode    # Кодировка для поддержки всех символов
+  host: 185.22.60.126
+  port: 5432
+  username: postgres
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>  # Оптимальный пул соединений
+  timeout: 5000        # Таймаут подключения в мс
+  
+  # Дополнительные параметры для production:
+  #reconnect: true      # Автоподключение при разрыве
+  #prepared_statements: true  # Для повышения производительности
+  #sslmode: prefer      # Безопасное подключение
