@@ -13,7 +13,7 @@ ENV RAILS_ENV="production" \
     BUNDLE_PATH="/usr/local/bundle" \
     BUNDLE_WITHOUT="development"
 
-
+ COPY --chown=rails:rails ./.env ./.env
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
@@ -23,18 +23,22 @@ RUN apt-get update -qq && \
     apt-get install -y build-essential curl default-libmysqlclient-dev git libpq-dev libvips node-gyp pkg-config python-is-python3
 
 # Install JavaScript dependencies
-# Замените эти строки:
-ARG NODE_VERSION=20.11.1  # Обновите до LTS-версии
-ARG YARN_VERSION=1.22.19
-    
-    # И добавьте после установки Node:
-RUN corepack enable
+ARG NODE_VERSION=20.11.1  # Используем LTS-версию
 ARG YARN_VERSION=1.22.19
 
 ENV PATH=/usr/local/node/bin:$PATH
 RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
     /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
-    npm install -g yarn@$YARN_VERSION && \
+    rm -rf /tmp/node-build-master
+
+# Устанавливаем Yarn через corepack (входит в Node.js 16.10+)
+RUN corepack enable && \
+    corepack prepare yarn@$YARN_VERSION --activate
+
+ENV PATH=/usr/local/node/bin:$PATH
+RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
+    /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
+    
     rm -rf /tmp/node-build-master
 
 # Install application gems
