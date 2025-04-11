@@ -143,7 +143,7 @@ GEM
     mini_mime (1.1.5)
     mini_portile2 (2.8.8)
     minitest (5.25.5)
-    mrsk (0.11.0)
+    mrsk (0.15.1)
       activesupport (>= 7.0)
       bcrypt_pbkdf (~> 1.0)
       dotenv (~> 2.8)
@@ -325,7 +325,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   jsbundling-rails
-  mrsk (= 0.11.0)
+  mrsk (= 0.15.1)
   nokogiri (~> 1.15)
   pg (~> 1.1)
   puma (>= 5.0)
