@@ -106,7 +106,7 @@ const WeightPriceComparator = () => {
                 onChange={handleChange}
                 className={form__input}
                 inputMode="decimal"
-                pattern="[0-9]*\.?[0-9]*"
+                pattern="[0-9]*[,.]?[0-9]*"
                 onKeyDown={(e) => {
                   if (e.key === '-' || e.key === 'e') {
                     e.preventDefault();
@@ -124,7 +124,7 @@ const WeightPriceComparator = () => {
                 onChange={handleChange}
                 className={form__input}
                 inputMode="decimal"
-                pattern="[0-9]*\.?[0-9]*"
+                pattern="[0-9]*[,.]?[0-9]*"
                 onKeyDown={(e) => {
                   if (e.key === '-' || e.key === 'e') {
                     e.preventDefault();
@@ -146,7 +146,7 @@ const WeightPriceComparator = () => {
                 onChange={handleChange}
                 className={form__input}
                 inputMode="decimal"
-                pattern="[0-9]*\.?[0-9]*"
+                pattern="[0-9]*[,.]?[0-9]*"
                 onKeyDown={(e) => {
                   if (e.key === '-' || e.key === 'e') {
                     e.preventDefault();
@@ -164,7 +164,7 @@ const WeightPriceComparator = () => {
                 onChange={handleChange}
                 className={form__input}
                 inputMode="decimal"
-                pattern="[0-9]*\.?[0-9]*"
+                pattern="[0-9]*[,.]?[0-9]*"
                 onKeyDown={(e) => {
                   if (e.key === '-' || e.key === 'e') {
                     e.preventDefault();
