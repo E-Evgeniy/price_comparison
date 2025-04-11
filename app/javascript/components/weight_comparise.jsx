@@ -35,7 +35,7 @@ const WeightPriceComparator = () => {
     // - целые числа (42)
     // - десятичные числа (3.14)
     // - числа с ведущей точкой (.5)
-    if (value === '' || /^\.\d*$|^\d+\.?\d*$/.test(value)) {
+    if (value === '' || /^[,\d]\d*[,.]?\d*$|^[,.]\d*$/.test(value)) {
       setFormData(prev => ({
         ...prev,
         [name]: value
@@ -53,7 +53,7 @@ const WeightPriceComparator = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(prepareDataForSubmission(formData))
       });
 
       const data = await response.json();
@@ -63,6 +63,16 @@ const WeightPriceComparator = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  // Преобразуем запятые в точки перед отправкой на сервер
+  const prepareDataForSubmission = (data) => {
+    return Object.fromEntries(
+      Object.entries(data).map(([key, value]) => [
+        key, 
+        typeof value === 'string' ? value.replace(',', '.') : value
+      ])
+    );
   };
 
   const handleClear = () => {
@@ -96,7 +106,7 @@ const WeightPriceComparator = () => {
                 onChange={handleChange}
                 className={form__input}
                 inputMode="decimal"
-                pattern="[0-9]*\.?[0-9]*"
+                pattern="[0-9]*[,.]?[0-9]*"
                 onKeyDown={(e) => {
                   if (e.key === '-' || e.key === 'e') {
                     e.preventDefault();
@@ -114,7 +124,7 @@ const WeightPriceComparator = () => {
                 onChange={handleChange}
                 className={form__input}
                 inputMode="decimal"
-                pattern="[0-9]*\.?[0-9]*"
+                pattern="[0-9]*[,.]?[0-9]*"
                 onKeyDown={(e) => {
                   if (e.key === '-' || e.key === 'e') {
                     e.preventDefault();
@@ -136,7 +146,7 @@ const WeightPriceComparator = () => {
                 onChange={handleChange}
                 className={form__input}
                 inputMode="decimal"
-                pattern="[0-9]*\.?[0-9]*"
+                pattern="[0-9]*[,.]?[0-9]*"
                 onKeyDown={(e) => {
                   if (e.key === '-' || e.key === 'e') {
                     e.preventDefault();
@@ -154,7 +164,7 @@ const WeightPriceComparator = () => {
                 onChange={handleChange}
                 className={form__input}
                 inputMode="decimal"
-                pattern="[0-9]*\.?[0-9]*"
+                pattern="[0-9]*[,.]?[0-9]*"
                 onKeyDown={(e) => {
                   if (e.key === '-' || e.key === 'e') {
                     e.preventDefault();
