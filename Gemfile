@@ -36,7 +36,7 @@ gem "bootsnap", require: false
 
 gem 'jsbundling-rails'
 gem 'cssbundling-rails'
-gem "mrsk", "0.11.0"
+gem "mrsk", "0.15.1"
 gem 'nokogiri', '~> 1.15'  # Актуальная стабильная версия
 
 group :development, :test do
